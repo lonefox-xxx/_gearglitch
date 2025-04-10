@@ -5,7 +5,6 @@ import GetReel from "./helper/getReel.js";
 import GetUrl from "./helper/getUrl.js";
 import UploadToInstagram from "./helper/uploadToInstagram.js";
 import UpdateReelStatus from './helper/updateReelStatus.js';
-import { schedule } from "node-cron";
 import { readFileSync } from 'fs';
 import axios from 'axios';
 import CreateCompleteVideo from './helper/createComepleteVideo.js';
@@ -31,7 +30,7 @@ async function handleReelProcess() {
 
         UpdateReelStatus(id, fileId)
         const message = 'new reel uploaded on _gearglitch'
-        await axios.get(`http://xdroid.net/api/message?k=k-7c2c2c6b4e68&t=upload+success+😍&c=${message}&u=`)
+        await axios.get(`http://xdroid.net/api/message?k=k-7c2c2c6b4e68&t=error+on+gearglitch&c=${message}&u=`)
     } catch (error) {
 
         const message = error.message || error.responce.message || 'something went wrong!'
@@ -40,16 +39,3 @@ async function handleReelProcess() {
     }
 }
 
-function SchedulePost() {
-    console.log('auto post started...')
-
-    schedule('0 10,12,14,17,22 * * *', async () => {
-        try {
-            await handleReelProcess();
-        } catch (error) {
-            console.error("Error in scheduled task:", error);
-        }
-    });
-}
-
-SchedulePost()

@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "fs"
 
-function UpdateReelStatus(id) {
+function UpdateReelStatus(id, fileId) {
     try {
         const reels = JSON.parse(readFileSync('./reels_data.json', 'utf-8') || '[]')
 
@@ -11,6 +11,7 @@ function UpdateReelStatus(id) {
         }
 
         reels[index].uploaded = true
+        reels[index].uploadedFileId = fileId
 
         writeFileSync('./reels_data.json', JSON.stringify(reels, null, 2)) // pretty print
 
