@@ -1,0 +1,21 @@
+{
+  "name": "car-edits",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "form-data": "^4.0.2",
+    "instagram-graph-api": "^7.0.0",
+    "node-cron": "^3.0.3"
+  }
+}
