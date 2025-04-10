@@ -7,6 +7,7 @@ import UploadToInstagram from "./helper/uploadToInstagram.js";
 import UpdateReelStatus from './helper/updateReelStatus.js';
 import { schedule } from "node-cron";
 import { readFileSync } from 'fs';
+import axios from 'axios';
 
 async function handleReelProcess() {
     try {
@@ -17,7 +18,12 @@ async function handleReelProcess() {
         const caption = captions[Math.floor(Math.random() * captions.length)];
         await UploadToInstagram(url, caption + '...')
         UpdateReelStatus(id)
+        const message = 'new reel uploaded on _gearglitch'
+        await axios.get(`http://xdroid.net/api/message?k=k-7c2c2c6b4e68&t=error+on+gearglitch&c=${message}&u=`)
     } catch (error) {
+        console.log(error)
+        const message = error.message || error.responce.message || 'something went wrong!'
+        await axios.get(`http://xdroid.net/api/message?k=k-7c2c2c6b4e68&t=error+on+gearglitch&c=${message}&u=`)
         await handleReelProcess()
     }
 }
